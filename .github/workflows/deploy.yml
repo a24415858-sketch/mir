@@ -1,0 +1,44 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+      - arena/8fa9f243-mir
+  workflow_dispatch:
+
+concurrency:
+  group: website-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH and deploy
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}
+        run: |
+          set -eu
+          if [ -z "$DEPLOY_HOST" ] || [ -z "$DEPLOY_USER" ] || [ -z "$DEPLOY_PATH" ] || [ -z "$DEPLOY_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ]; then
+            echo 'Configure the deployment secrets described in README.md.' >&2
+            exit 1
+          fi
+          case "$DEPLOY_HOST" in *[!a-zA-Z0-9.-]*|'') echo 'Invalid DEPLOY_HOST' >&2; exit 1;; esac
+          case "$DEPLOY_USER" in *[!a-zA-Z0-9_-]*|'') echo 'Invalid DEPLOY_USER' >&2; exit 1;; esac
+          case "$DEPLOY_PATH" in /*) ;; *) echo 'DEPLOY_PATH must be absolute' >&2; exit 1;; esac
+          case "$DEPLOY_PATH" in *[!a-zA-Z0-9_./-]*|/) echo 'Invalid DEPLOY_PATH' >&2; exit 1;; esac
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
+          case "$DEPLOY_PORT" in *[!0-9]*|'') echo 'Invalid DEPLOY_PORT' >&2; exit 1;; esac
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy_key ~/.ssh/known_hosts
+          rsync -az -e "ssh -i $HOME/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=yes" \
+            index.html styles.css script.js assets/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/" --relative

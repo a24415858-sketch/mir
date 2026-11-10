@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ee">
+  <meta name="description" content="Мир мебели — идеи и вдохновение для уютного дома. Мебель для гостиной, спальни и столовой.">
+  <title>Мир мебели — пространство, в котором хочется жить</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="announcement">ПРОСТРАНСТВО ДЛЯ ЖИЗНИ, СОЗДАННОЕ С ЛЮБОВЬЮ <span>✳</span></div>
+  <header class="header">
+    <a class="brand" href="#top" aria-label="Мир мебели — на главную"><span class="brand-mark">м<span>м</span><i>•</i></span><span class="brand-name">МИР<br>МЕБЕЛИ</span></a>
+    <nav class="navigation" aria-label="Основная навигация">
+      <a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a>
+    </nav>
+    <a class="header-link" href="#collections">Найти своё <span>↗</span></a>
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a></nav>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <img class="hero-image" src="assets/hero-interior.jpg" alt="Светлая гостиная с уютным диваном и мебелью из дерева">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <div class="eyebrow light"><span class="eyebrow-line"></span> ДОМ НАЧИНАЕТСЯ ЗДЕСЬ</div>
+        <h1 id="hero-heading">Красота жить<br><em>по-своему.</em></h1>
+        <p>Мебель, которая становится частью вашей истории. Для моментов, которые хочется проживать дома.</p>
+        <a class="button button-light" href="#collections">Открыть коллекции <span>↗</span></a>
+      </div>
+      <div class="hero-bottom"><span>СОЗДАЁМ УЮТ ВМЕСТЕ</span><span>01 / 03</span><span>ЛИСТАЙТЕ ВНИЗ ↓</span></div>
+      <div class="hero-side">ПРОСТРАНСТВО, ГДЕ ХОРОШО БЫТЬ СОБОЙ</div>
+    </section>
+
+    <section id="collections" class="section collections">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> ДЛЯ КАЖДОГО МОМЕНТА</div><h2>Найдите своё <em>место.</em></h2></div>
+        <p>У каждого дома свой характер. Найдите идеи для пространства, которое отражает именно вас.</p>
+      </div>
+      <div class="collection-grid">
+        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/living-room.jpg" alt="Гостиная со светлым модульным диваном" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">01 / ПРОСТРАНСТВО</span><h3>Гостиная</h3><p>Для встреч, разговоров и тихих вечеров</p></div><span class="card-plus">↗</span></div></a>
+        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/bedroom.jpg" alt="Спальня с мягкой кроватью и льняным текстилем" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">02 / ПРОСТРАНСТВО</span><h3>Спальня</h3><p>Для отдыха, к которому хочется вернуться</p></div><span class="card-plus">↗</span></div></a>
+        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/dining.jpg" alt="Столовая с деревянным столом и мягкими стульями" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">03 / ПРОСТРАНСТВО</span><h3>Столовая</h3><p>Для особенных и повседневных встреч</p></div><span class="card-plus">↗</span></div></a>
+      </div>
+      <p class="illustration-note">Изображения представлены для вдохновения.</p>
+    </section>
+
+    <section id="about" class="philosophy">
+      <div class="philosophy-label"><span>МИР МЕБЕЛИ</span><span>✳</span></div>
+      <div class="philosophy-copy"><div class="eyebrow"><span class="eyebrow-line"></span> НАША ФИЛОСОФИЯ</div><h2>Дом — это не место.<br><em>Это чувство.</em></h2><p>Мы верим, что уют складывается из деталей: любимого кресла, мягкого света и вещей, к которым приятно прикоснуться. Создавайте пространство для жизни в своём ритме.</p><a href="#inspiration" class="text-link">НЕМНОГО ВДОХНОВЕНИЯ <span>↗</span></a></div>
+      <div class="philosophy-number">01 — 03</div>
+    </section>
+
+    <section id="inspiration" class="section inspiration"><div class="inspiration-image"><img src="assets/dining.jpg" alt="Уютная столовая в натуральных оттенках" loading="lazy"><span class="image-stamp">ДОМ · ЭТО ВЫ <b>✳</b></span></div><div class="inspiration-copy"><div class="eyebrow"><span class="eyebrow-line"></span> ВДОХНОВЕНИЕ НА КАЖДЫЙ ДЕНЬ</div><h2>Маленькие детали.<br><em>Большая жизнь.</em></h2><p>Тёплое дерево, спокойные оттенки и любимые вещи рядом. Пусть ваш дом рассказывает вашу историю — красивую, настоящую и только вашу.</p><a class="button button-dark" href="#collections">Посмотреть пространства <span>↗</span></a></div></section>
+    <section class="closing"><span>ПУСТЬ ДОМА БУДЕТ ХОРОШО</span><h2>Ваш мир начинается <em>дома.</em></h2><a href="#top" aria-label="Вернуться наверх">↑</a></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">м<span>м</span><i>•</i></span><span class="brand-name">МИР<br>МЕБЕЛИ</span></a><p>Мебель и идеи для жизни, которую вы любите.</p><div class="footer-links"><a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a></div><div class="footer-bottom"><span>© <span id="year"></span> МИР МЕБЕЛИ</span><span>СОЗДАНО ДЛЯ ВАШЕГО УЮТА</span></div></footer>
+</body>
+</html>
