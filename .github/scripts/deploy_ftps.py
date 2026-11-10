@@ -40,7 +40,7 @@ def main():
                     print(f'Uploaded assets/{path.name}')
         print('FTPS deployment completed.')
         return 0
-    except (ftplib.all_errors, ValueError, OSError) as exc:
+    except (ftplib.Error, OSError, EOFError, ValueError) as exc:
         print(f'::error::FTPS deployment failed: {exc}', file=sys.stderr)
         return 1
 
