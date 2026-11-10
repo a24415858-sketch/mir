@@ -1,8 +1,7 @@
-"""Publish only the website files using certificate-verified explicit FTPS."""
+"""Publish only the website files using unencrypted FTP (credentials are exposed in transit)."""
 import ftplib
 import os
 from pathlib import Path
-import ssl
 import sys
 
 
@@ -18,14 +17,9 @@ def main():
         port = int(os.environ.get('FTP_PORT') or '21')
         if not 1 <= port <= 65535:
             raise ValueError('FTP_PORT must be between 1 and 65535')
-        context = ssl.create_default_context()
-        if os.environ.get('FTP_CA_CERT'):
-            context.load_verify_locations(cadata=os.environ['FTP_CA_CERT'])
-        with ftplib.FTP_TLS(context=context, timeout=30) as ftp:
+        with ftplib.FTP(timeout=30) as ftp:
             ftp.connect(os.environ['FTP_SERVER'], port)
-            # FTP_TLS.login upgrades the control connection to TLS before sending credentials.
             ftp.login(os.environ['FTP_USERNAME'], os.environ['FTP_PASSWORD'])
-            ftp.prot_p()  # Encrypt the data connection too.
             ftp.cwd(os.environ['FTP_DIR'])
             for filename in ('index.html', 'styles.css', 'script.js'):
                 with open(filename, 'rb') as source:
@@ -41,10 +35,10 @@ def main():
                     with path.open('rb') as source:
                         ftp.storbinary(f'STOR {path.name}', source)
                     print(f'Uploaded assets/{path.name}')
-        print('FTPS deployment completed.')
+        print('FTP deployment completed.')
         return 0
     except (ftplib.Error, OSError, EOFError, ValueError) as exc:
-        print(f'::error::FTPS deployment failed: {exc}', file=sys.stderr)
+        print(f'::error::FTP deployment failed: {exc}', file=sys.stderr)
         return 1
 
 
