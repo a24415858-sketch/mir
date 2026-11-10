@@ -21,6 +21,6 @@ jobs:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_DIR: /www/mir.ezegames.ru
+          FTP_DIR: /
           FTP_PORT: ${{ vars.FTP_PORT }}
         run: python3 .github/scripts/deploy_ftp.py
