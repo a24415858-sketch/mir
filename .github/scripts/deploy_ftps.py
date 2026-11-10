@@ -18,7 +18,10 @@ def main():
         port = int(os.environ.get('FTP_PORT') or '21')
         if not 1 <= port <= 65535:
             raise ValueError('FTP_PORT must be between 1 and 65535')
-        with ftplib.FTP_TLS(context=ssl.create_default_context(), timeout=30) as ftp:
+        context = ssl.create_default_context()
+        if os.environ.get('FTP_CA_CERT'):
+            context.load_verify_locations(cadata=os.environ['FTP_CA_CERT'])
+        with ftplib.FTP_TLS(context=context, timeout=30) as ftp:
             ftp.connect(os.environ['FTP_SERVER'], port)
             # FTP_TLS.login upgrades the control connection to TLS before sending credentials.
             ftp.login(os.environ['FTP_USERNAME'], os.environ['FTP_PASSWORD'])

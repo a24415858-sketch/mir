@@ -22,5 +22,6 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_DIR: ${{ secrets.FTP_DIR }}
+          FTP_CA_CERT: ${{ secrets.FTP_CA_CERT }}
           FTP_PORT: ${{ vars.FTP_PORT }}
         run: python3 .github/scripts/deploy_ftps.py
