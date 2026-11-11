@@ -3,60 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f3ee">
-  <meta name="description" content="Мир мебели — идеи и вдохновение для уютного дома. Мебель для гостиной, спальни и столовой.">
-  <title>Мир мебели — пространство, в котором хочется жить</title>
+  <meta name="theme-color" content="#ee0d78">
+  <meta name="description" content="Мир мебели — салон мягкой и корпусной мебели в селе Месягутово. Кухни, спальни, гостиные, детские и шкафы-купе.">
+  <title>Мир мебели — салон мебели в Месягутово</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="announcement">ПРОСТРАНСТВО ДЛЯ ЖИЗНИ, СОЗДАННОЕ С ЛЮБОВЬЮ <span>✳</span></div>
-  <header class="header">
-    <a class="brand" href="#top" aria-label="Мир мебели — на главную"><span class="brand-mark">м<span>м</span><i>•</i></span><span class="brand-name">МИР<br>МЕБЕЛИ</span></a>
-    <nav class="navigation" aria-label="Основная навигация">
-      <a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a>
-    </nav>
-    <a class="header-link" href="#collections">Найти своё <span>↗</span></a>
+  <div class="topline"><div class="wrap top-inner"><span>МЕБЕЛЬ ДЛЯ ВАШЕГО ДОМА <b>✳</b></span><a href="https://yandex.ru/maps/?text=%D1%81.%20%D0%9C%D0%B5%D1%81%D1%8F%D0%B3%D1%83%D1%82%D0%BE%D0%B2%D0%BE%2C%20%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%2C%2026" target="_blank" rel="noopener noreferrer">⌖ &nbsp;с. Месягутово, ул. Партизанская, 26</a></div></div>
+  <header class="header"><div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Мир мебели — на главную"><span class="brand-symbol">м<span>м</span><i>✳</i></span><span class="brand-text">МИР<br>МЕБЕЛИ</span></a>
+    <nav class="navigation" aria-label="Основная навигация"><a href="#catalog">Мебель</a><a href="#about">О салоне</a><a href="#contacts">Контакты</a></nav>
+    <a class="header-phone" href="tel:+79649513591"><span class="phone-icon">☎</span><span><small>ЗВОНИТЕ НАМ</small><strong>8 964 951 35 91</strong></span></a>
+    <a class="header-button" href="#contacts">КАК НАС НАЙТИ <span>↗</span></a>
     <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
-  </header>
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a></nav>
+  </div></header>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden><a href="#catalog">Мебель</a><a href="#about">О салоне</a><a href="#contacts">Контакты</a><a href="tel:+79649513591">8 964 951 35 91</a></nav>
 
   <main id="top">
-    <section class="hero" aria-labelledby="hero-heading">
-      <img class="hero-image" src="assets/hero-interior.jpg" alt="Светлая гостиная с уютным диваном и мебелью из дерева">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <div class="eyebrow light"><span class="eyebrow-line"></span> ДОМ НАЧИНАЕТСЯ ЗДЕСЬ</div>
-        <h1 id="hero-heading">Красота жить<br><em>по-своему.</em></h1>
-        <p>Мебель, которая становится частью вашей истории. Для моментов, которые хочется проживать дома.</p>
-        <a class="button button-light" href="#collections">Открыть коллекции <span>↗</span></a>
-      </div>
-      <div class="hero-bottom"><span>СОЗДАЁМ УЮТ ВМЕСТЕ</span><span>01 / 03</span><span>ЛИСТАЙТЕ ВНИЗ ↓</span></div>
-      <div class="hero-side">ПРОСТРАНСТВО, ГДЕ ХОРОШО БЫТЬ СОБОЙ</div>
-    </section>
-
-    <section id="collections" class="section collections">
-      <div class="section-heading">
-        <div><div class="eyebrow"><span class="eyebrow-line"></span> ДЛЯ КАЖДОГО МОМЕНТА</div><h2>Найдите своё <em>место.</em></h2></div>
-        <p>У каждого дома свой характер. Найдите идеи для пространства, которое отражает именно вас.</p>
-      </div>
-      <div class="collection-grid">
-        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/living-room.jpg" alt="Гостиная со светлым модульным диваном" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">01 / ПРОСТРАНСТВО</span><h3>Гостиная</h3><p>Для встреч, разговоров и тихих вечеров</p></div><span class="card-plus">↗</span></div></a>
-        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/bedroom.jpg" alt="Спальня с мягкой кроватью и льняным текстилем" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">02 / ПРОСТРАНСТВО</span><h3>Спальня</h3><p>Для отдыха, к которому хочется вернуться</p></div><span class="card-plus">↗</span></div></a>
-        <a class="collection-card" href="#inspiration"><div class="card-image"><img src="assets/dining.jpg" alt="Столовая с деревянным столом и мягкими стульями" loading="lazy"><span class="card-arrow">↗</span></div><div class="card-info"><div><span class="card-index">03 / ПРОСТРАНСТВО</span><h3>Столовая</h3><p>Для особенных и повседневных встреч</p></div><span class="card-plus">↗</span></div></a>
-      </div>
-      <p class="illustration-note">Изображения представлены для вдохновения.</p>
-    </section>
-
-    <section id="about" class="philosophy">
-      <div class="philosophy-label"><span>МИР МЕБЕЛИ</span><span>✳</span></div>
-      <div class="philosophy-copy"><div class="eyebrow"><span class="eyebrow-line"></span> НАША ФИЛОСОФИЯ</div><h2>Дом — это не место.<br><em>Это чувство.</em></h2><p>Мы верим, что уют складывается из деталей: любимого кресла, мягкого света и вещей, к которым приятно прикоснуться. Создавайте пространство для жизни в своём ритме.</p><a href="#inspiration" class="text-link">НЕМНОГО ВДОХНОВЕНИЯ <span>↗</span></a></div>
-      <div class="philosophy-number">01 — 03</div>
-    </section>
-
-    <section id="inspiration" class="section inspiration"><div class="inspiration-image"><img src="assets/dining.jpg" alt="Уютная столовая в натуральных оттенках" loading="lazy"><span class="image-stamp">ДОМ · ЭТО ВЫ <b>✳</b></span></div><div class="inspiration-copy"><div class="eyebrow"><span class="eyebrow-line"></span> ВДОХНОВЕНИЕ НА КАЖДЫЙ ДЕНЬ</div><h2>Маленькие детали.<br><em>Большая жизнь.</em></h2><p>Тёплое дерево, спокойные оттенки и любимые вещи рядом. Пусть ваш дом рассказывает вашу историю — красивую, настоящую и только вашу.</p><a class="button button-dark" href="#collections">Посмотреть пространства <span>↗</span></a></div></section>
-    <section class="closing"><span>ПУСТЬ ДОМА БУДЕТ ХОРОШО</span><h2>Ваш мир начинается <em>дома.</em></h2><a href="#top" aria-label="Вернуться наверх">↑</a></section>
+    <section class="hero"><div class="hero-image"><img src="assets/color-hero.jpg" alt="Яркий интерьер гостиной с розовым диваном"></div><div class="wrap hero-wrap"><div class="hero-content"><span class="hero-kicker"><span>✳</span> МЕБЕЛЬ, КОТОРАЯ РАДУЕТ</span><h1>ДОМ НАЧИНАЕТСЯ<br><span>С УЮТА!</span></h1><div class="hero-ribbon">САЛОН МЯГКОЙ И КОРПУСНОЙ МЕБЕЛИ</div><p>Создавайте пространство, в которое хочется возвращаться. А мебель для него ищите у нас!</p><div class="hero-actions"><a class="btn btn-yellow" href="#catalog">ВЫБРАТЬ МЕБЕЛЬ <span>↗</span></a><a class="hero-call" href="tel:+79649513591">ПОЗВОНИТЬ НАМ <span>↗</span></a></div></div><div class="hero-stamp"><span>ДЛЯ ВАШЕГО</span><strong>ДОМА</strong><b>✳</b></div></div><div class="hero-bottom"><div class="wrap hero-bottom-inner"><span>МИР МЕБЕЛИ &nbsp; / &nbsp; МЕСЯГУТОВО</span><span>ЛИСТАЙТЕ ВНИЗ ↓</span></div></div></section>
+    <div class="ticker" aria-label="Наши направления"><div class="ticker-track"><span>КУХНИ</span><b>✳</b><span>СПАЛЬНИ</span><b>✳</b><span>ГОСТИНЫЕ</span><b>✳</b><span>ДЕТСКИЕ</span><b>✳</b><span>ШКАФЫ-КУПЕ</span><b>✳</b><span>МЯГКАЯ МЕБЕЛЬ</span><b>✳</b></div></div>
+    <section class="catalog section" id="catalog"><div class="wrap"><div class="section-top"><div><div class="section-label"><span>01</span> НАШИ НАПРАВЛЕНИЯ</div><h2>ВСЁ ДЛЯ <span>ВАШЕГО ДОМА.</span></h2></div><p>От уютной спальни до кухни, где собирается вся семья. Найдите мебель для каждого уголка дома.</p></div>
+      <div class="category-grid">
+        <article class="category"><div class="category-image"><img src="assets/color-kitchen.jpg" alt="Яркая кухня с фиолетовыми шкафами" loading="lazy"><span class="category-number">01</span></div><div class="category-copy"><div><h3>КУХНИ</h3><p>Для вкусных моментов</p></div><a href="tel:+79649513591" aria-label="Узнать о кухнях по телефону">↗</a></div></article>
+        <article class="category"><div class="category-image"><img src="assets/color-bedroom.jpg" alt="Уютная спальня с мягкой кроватью" loading="lazy"><span class="category-number">02</span></div><div class="category-copy"><div><h3>СПАЛЬНИ</h3><p>Для отдыха и сладких снов</p></div><a href="tel:+79649513591" aria-label="Узнать о спальнях по телефону">↗</a></div></article>
+        <article class="category"><div class="category-image"><img src="assets/color-living.jpg" alt="Гостиная с ярким диваном" loading="lazy"><span class="category-number">03</span></div><div class="category-copy"><div><h3>ГОСТИНЫЕ</h3><p>Для времени вместе</p></div><a href="tel:+79649513591" aria-label="Узнать о гостиных по телефону">↗</a></div></article>
+        <article class="category"><div class="category-image"><img src="assets/color-kids.jpg" alt="Светлая детская комната" loading="lazy"><span class="category-number">04</span></div><div class="category-copy"><div><h3>ДЕТСКИЕ</h3><p>Для больших маленьких историй</p></div><a href="tel:+79649513591" aria-label="Узнать о детской мебели по телефону">↗</a></div></article>
+        <article class="category"><div class="category-image"><img src="assets/color-wardrobe.jpg" alt="Современный шкаф-купе в интерьере" loading="lazy"><span class="category-number">05</span></div><div class="category-copy"><div><h3>ШКАФЫ-КУПЕ</h3><p>Для порядка во всём</p></div><a href="tel:+79649513591" aria-label="Узнать о шкафах-купе по телефону">↗</a></div></article>
+        <article class="category"><div class="category-image"><img src="assets/color-hero.jpg" alt="Розовый мягкий диван в интерьере" loading="lazy"><span class="category-number">06</span></div><div class="category-copy"><div><h3>МЯГКАЯ МЕБЕЛЬ</h3><p>Для уютных вечеров</p></div><a href="tel:+79649513591" aria-label="Узнать о мягкой мебели по телефону">↗</a></div></article>
+      </div><div class="catalog-bottom"><p>Изображения представлены для вдохновения. Наличие уточняйте в салоне.</p><a href="tel:+79649513591">ЕСТЬ ВОПРОСЫ? ПОЗВОНИТЕ НАМ <span>↗</span></a></div>
+    </div></section>
+    <section class="about" id="about"><div class="wrap about-inner"><div class="about-image"><img src="assets/color-kitchen.jpg" alt="Яркая современная кухня" loading="lazy"><div class="about-sticker">С ЛЮБОВЬЮ<br><strong>К ДОМУ</strong> <span>✳</span></div></div><div class="about-copy"><div class="section-label light"><span>02</span> РАДЫ ЗНАКОМСТВУ</div><h2>БОЛЬШЕ УЮТА.<br><em>БОЛЬШЕ ЖИЗНИ.</em></h2><p>Дом — это место, где каждый день происходят важные моменты. Пусть в нём будет удобно, красиво и по-настоящему хорошо.</p><p>Приходите в «Мир мебели» в Месягутово — будем рады помочь вам найти мебель для вашего дома.</p><a class="btn btn-yellow" href="#contacts">ЖДЁМ ВАС В ГОСТИ <span>↗</span></a></div></div></section>
+    <section class="contacts section" id="contacts"><div class="wrap"><div class="section-label"><span>03</span> БУДЕМ НА СВЯЗИ</div><div class="contacts-head"><h2>ПРИХОДИТЕ <span>ЗА УЮТОМ!</span></h2><div class="contact-star">✳</div></div><div class="contact-panel"><div class="contact-intro"><span>МИР МЕБЕЛИ</span><h3>ВАШ ДОМ.<br>ВАШИ ПРАВИЛА.</h3><p>Загляните в наш салон или позвоните, чтобы узнать подробности.</p></div><div class="contact-details"><div class="contact-item"><span class="contact-icon">⌖</span><div><small>НАШ АДРЕС</small><strong>с. Месягутово,<br>ул. Партизанская, 26</strong><a href="https://yandex.ru/maps/?text=%D1%81.%20%D0%9C%D0%B5%D1%81%D1%8F%D0%B3%D1%83%D1%82%D0%BE%D0%B2%D0%BE%2C%20%D0%9F%D0%B0%D1%80%D1%82%D0%B8%D0%B7%D0%B0%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%2C%2026" target="_blank" rel="noopener noreferrer">ОТКРЫТЬ НА КАРТЕ ↗</a></div></div><div class="contact-item"><span class="contact-icon">☎</span><div><small>НАШ ТЕЛЕФОН</small><strong><a class="phone-number" href="tel:+79649513591">8 964 951 35 91</a></strong><a href="tel:+79649513591">ПОЗВОНИТЬ НАМ ↗</a></div></div></div></div></div></section>
   </main>
-  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">м<span>м</span><i>•</i></span><span class="brand-name">МИР<br>МЕБЕЛИ</span></a><p>Мебель и идеи для жизни, которую вы любите.</p><div class="footer-links"><a href="#collections">Коллекции</a><a href="#about">О нас</a><a href="#inspiration">Вдохновение</a></div><div class="footer-bottom"><span>© <span id="year"></span> МИР МЕБЕЛИ</span><span>СОЗДАНО ДЛЯ ВАШЕГО УЮТА</span></div></footer>
+  <footer><div class="wrap footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-symbol">м<span>м</span><i>✳</i></span><span class="brand-text">МИР<br>МЕБЕЛИ</span></a><p>САЛОН МЯГКОЙ И КОРПУСНОЙ МЕБЕЛИ<br><span>Для дома, в котором хочется быть.</span></p><div class="footer-nav"><a href="#catalog">Мебель</a><a href="#about">О салоне</a><a href="#contacts">Контакты</a></div><a class="back-top" href="#top" aria-label="Вернуться наверх">↑</a></div><div class="wrap footer-bottom"><span>© <span id="year"></span> МИР МЕБЕЛИ</span><span>СДЕЛАНО С ЛЮБОВЬЮ К ДОМУ ✳</span></div></footer>
 </body>
 </html>
