@@ -1,6 +1,7 @@
 """Publish only the website files using unencrypted FTP (credentials are exposed in transit)."""
 import ftplib
 import os
+import re
 from pathlib import Path
 import sys
 
@@ -25,6 +26,8 @@ def main():
             ftp.login(os.environ['FTP_USERNAME'], os.environ['FTP_PASSWORD'])
             stage = 'opening FTP_DIR'
             ftp.cwd(os.environ['FTP_DIR'])
+            ftp.voidcmd('TYPE I')
+
             def upload_tree(local_dir):
                 for path in sorted(local_dir.iterdir()):
                     if path.is_dir():
@@ -36,6 +39,14 @@ def main():
                         upload_tree(path)
                         ftp.cwd('..')
                     elif path.is_file():
+                        # Only immutable, hash-named catalog thumbnails can safely be skipped.
+                        # If SIZE is unsupported or the size differs, upload normally.
+                        if local_dir == Path('assets/catalog') and re.fullmatch(r'[0-9a-f]{20}\.(jpg|png)', path.name):
+                            try:
+                                if ftp.size(path.name) == path.stat().st_size:
+                                    continue
+                            except ftplib.Error:
+                                pass
                         with path.open('rb') as source:
                             ftp.storbinary(f'STOR {path.name}', source)
                         print(f'Uploaded {path.as_posix()}')

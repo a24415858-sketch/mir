@@ -27,6 +27,7 @@ const more = document.querySelector('#show-more');
 const photoDialog = document.querySelector('#photo-dialog');
 const photoLarge = document.querySelector('#photo-large');
 const photoCaption = document.querySelector('#photo-caption');
+const photoQuality = document.querySelector('#photo-quality');
 const products = Array.isArray(window.CATALOG) ? window.CATALOG : [];
 const categories = ['Все', 'Кухни', 'Диваны и кресла', 'Шкафы', 'Спальня', 'Гостиная', 'Детская', 'Прихожая', 'Комоды'];
 const pageSize = 24;
@@ -85,6 +86,7 @@ function makeCard(product) {
       photoLarge.src = photo.href;
       photoLarge.alt = product.name;
       photoCaption.textContent = product.name;
+      photoQuality.hidden = !img.naturalWidth || (img.naturalWidth > 400 && img.naturalHeight > 400);
       photoDialog.showModal();
     });
     card.append(photo);
@@ -94,7 +96,9 @@ function makeCard(product) {
   body.append(element('h3', '', product.name));
   if (product.variant) body.append(element('p', '', 'Вариант: ' + product.variant));
   const footer = element('div', 'product-footer');
-  footer.append(element('strong', 'product-price', product.price === null ? 'Цена по запросу' : new Intl.NumberFormat('ru-RU').format(product.price) + ' ₽'));
+  const price = element('div', 'product-price-wrap');
+  price.append(element('span', 'price-label', 'СТОИМОСТЬ'), element('strong', 'product-price', product.price === null ? 'Цена по запросу' : new Intl.NumberFormat('ru-RU').format(product.price) + ' ₽'));
+  footer.append(price);
   const contact = element('a', '', 'УЗНАТЬ О ТОВАРЕ ↗');
   contact.href = 'tel:+79649513591';
   contact.setAttribute('aria-label', 'Узнать о товаре: ' + product.name);
