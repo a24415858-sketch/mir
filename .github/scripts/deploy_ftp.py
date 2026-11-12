@@ -25,23 +25,35 @@ def main():
             ftp.login(os.environ['FTP_USERNAME'], os.environ['FTP_PASSWORD'])
             stage = 'opening FTP_DIR'
             ftp.cwd(os.environ['FTP_DIR'])
+            def upload_tree(local_dir):
+                for path in sorted(local_dir.iterdir()):
+                    if path.is_dir():
+                        try:
+                            ftp.cwd(path.name)
+                        except ftplib.error_perm:
+                            ftp.mkd(path.name)
+                            ftp.cwd(path.name)
+                        upload_tree(path)
+                        ftp.cwd('..')
+                    elif path.is_file():
+                        with path.open('rb') as source:
+                            ftp.storbinary(f'STOR {path.name}', source)
+                        print(f'Uploaded {path.as_posix()}')
+
             stage = 'uploading site files'
             for filename in ('index.html', 'styles.css', 'script.js'):
                 with open(filename, 'rb') as source:
                     ftp.storbinary(f'STOR {filename}', source)
                 print(f'Uploaded {filename}')
-            stage = 'opening or creating assets directory'
-            try:
-                ftp.cwd('assets')
-            except ftplib.error_perm:
-                ftp.mkd('assets')
-                ftp.cwd('assets')
-            stage = 'uploading assets'
-            for path in sorted(Path('assets').glob('*')):
-                if path.is_file():
-                    with path.open('rb') as source:
-                        ftp.storbinary(f'STOR {path.name}', source)
-                    print(f'Uploaded assets/{path.name}')
+            for directory in ('assets', 'data'):
+                stage = f'uploading {directory}'
+                try:
+                    ftp.cwd(directory)
+                except ftplib.error_perm:
+                    ftp.mkd(directory)
+                    ftp.cwd(directory)
+                upload_tree(Path(directory))
+                ftp.cwd('..')
         print('FTP deployment completed.')
         return 0
     except (ftplib.Error, OSError, EOFError, ValueError) as exc:
