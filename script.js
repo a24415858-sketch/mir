@@ -28,8 +28,32 @@ const photoDialog = document.querySelector('#photo-dialog');
 const photoLarge = document.querySelector('#photo-large');
 const photoCaption = document.querySelector('#photo-caption');
 const photoQuality = document.querySelector('#photo-quality');
-const products = Array.isArray(window.CATALOG) ? window.CATALOG : [];
-const categories = ['Все', 'Кухни', 'Шкафы', 'Спальня', 'Гостиная', 'Детская', 'Прихожая', 'Комоды'];
+const photoError = document.querySelector('#photo-error');
+const photoNavigation = document.querySelector('#photo-navigation');
+const photoCount = document.querySelector('#photo-count');
+let gallery = [];
+let galleryIndex = 0;
+
+function showGalleryPhoto() {
+  photoError.hidden = true;
+  photoLarge.hidden = false;
+  photoQuality.hidden = true;
+  photoLarge.src = gallery[galleryIndex];
+  photoCount.textContent = `${galleryIndex + 1} / ${gallery.length}`;
+  photoNavigation.hidden = gallery.length < 2;
+}
+photoLarge.addEventListener('load', () => {
+  photoQuality.hidden = photoLarge.naturalWidth > 400 && photoLarge.naturalHeight > 400;
+});
+photoLarge.addEventListener('error', () => {
+  photoLarge.hidden = true;
+  photoQuality.hidden = true;
+  photoError.hidden = false;
+});
+document.querySelector('#photo-prev').addEventListener('click', () => { galleryIndex = (galleryIndex + gallery.length - 1) % gallery.length; showGalleryPhoto(); });
+document.querySelector('#photo-next').addEventListener('click', () => { galleryIndex = (galleryIndex + 1) % gallery.length; showGalleryPhoto(); });
+const products = [...(Array.isArray(window.VK_PRODUCTS) ? window.VK_PRODUCTS : []), ...(Array.isArray(window.CATALOG) ? window.CATALOG : [])];
+const categories = ['Все', 'Диваны', 'Кухни', 'Шкафы', 'Спальня', 'Гостиная', 'Детская', 'Прихожая', 'Комоды'];
 const pageSize = 24;
 let category = 'Все';
 let visibleCount = pageSize;
@@ -63,18 +87,22 @@ categories.forEach((name) => {
 function makeCard(product) {
   const card = element('article', 'product');
   const placeholder = () => element('div', 'product-photo product-placeholder', 'Фото пока нет');
-  if (product.image) {
+  const imageUrl = product.image || (product.images && product.images[0]);
+  if (imageUrl) {
     const photo = element('a', 'product-photo');
-    photo.href = product.image;
+    photo.href = imageUrl;
     photo.setAttribute('aria-label', 'Увеличить фото: ' + product.name);
     const img = document.createElement('img');
-    img.src = product.image;
+    img.src = imageUrl;
     img.alt = product.name;
     img.loading = 'lazy';
     img.addEventListener('error', () => {
       if (product.thumbnail && img.getAttribute('src') !== product.thumbnail) {
         img.src = product.thumbnail;
         photo.href = product.thumbnail;
+      } else if (product.images && product.images.length > 1) {
+        img.hidden = true;
+        photo.append(element('span', 'photo-unavailable', 'Фото временно недоступно · открыть галерею'));
       } else {
         photo.replaceWith(placeholder());
       }
@@ -83,10 +111,11 @@ function makeCard(product) {
     photo.addEventListener('click', (event) => {
       if (typeof photoDialog.showModal !== 'function') return;
       event.preventDefault();
-      photoLarge.src = photo.href;
+      gallery = product.images && product.images.length ? product.images : [photo.href];
+      galleryIndex = 0;
       photoLarge.alt = product.name;
       photoCaption.textContent = product.name;
-      photoQuality.hidden = !img.naturalWidth || (img.naturalWidth > 400 && img.naturalHeight > 400);
+      showGalleryPhoto();
       photoDialog.showModal();
     });
     card.append(photo);
@@ -95,6 +124,23 @@ function makeCard(product) {
   body.append(element('span', 'product-type', product.category + (product.sku ? ' · АРТ. ' + product.sku : '')));
   body.append(element('h3', '', product.name));
   if (product.variant) body.append(element('p', '', 'Вариант: ' + product.variant));
+  if (product.order) body.append(element('span', 'product-order', product.order));
+  if (Array.isArray(product.description) && product.description.length) {
+    const details = element('details', 'product-details');
+    details.open = true;
+    details.append(element('summary', '', 'Описание и характеристики'));
+    const list = element('ul', '');
+    product.description.forEach((line) => list.append(element('li', '', line)));
+    details.append(list);
+    body.append(details);
+  }
+  if (product.source) {
+    const source = element('a', 'product-source', 'Публикация магазина ↗');
+    source.href = product.source;
+    source.target = '_blank';
+    source.rel = 'noopener noreferrer';
+    body.append(source);
+  }
   const footer = element('div', 'product-footer');
   const price = element('div', 'product-price-wrap');
   price.append(element('span', 'price-label', 'СТОИМОСТЬ'), element('strong', 'product-price', product.price === null ? 'Цена по запросу' : new Intl.NumberFormat('ru-RU').format(product.price) + ' ₽'));
