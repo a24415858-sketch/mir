@@ -64,7 +64,7 @@ def main(csv_path, pdf_path):
     highres = json.loads((ROOT / 'tools/highres_images.json').read_text(encoding='utf-8'))
     products = []
     for i, row in enumerate(rows):
-        if re.search(r'\bадель\b', row['Наименование'], re.I) and row['Раздел'] == 'Кухни':
+        if (re.search(r'\bадель\b', row['Наименование'], re.I) and row['Раздел'] == 'Кухни') or re.search(r'диван', row['Наименование'], re.I):
             continue
         thumbnail = photos.get(i, '')
         products.append({'category': row['Раздел'], 'subcategory': row['Подраздел'], 'name': row['Наименование'], 'sku': row['Артикул'], 'variant': row['Вариант'], 'price': int(row['Цена, руб']) if row['Цена, руб'] else None, 'image': highres.get(row['Артикул'], thumbnail), 'thumbnail': thumbnail})
