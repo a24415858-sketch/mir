@@ -52,7 +52,14 @@ photoLarge.addEventListener('error', () => {
 });
 document.querySelector('#photo-prev').addEventListener('click', () => { galleryIndex = (galleryIndex + gallery.length - 1) % gallery.length; showGalleryPhoto(); });
 document.querySelector('#photo-next').addEventListener('click', () => { galleryIndex = (galleryIndex + 1) % gallery.length; showGalleryPhoto(); });
-const products = [...(Array.isArray(window.VK_PRODUCTS) ? window.VK_PRODUCTS : []), ...(Array.isArray(window.CATALOG) ? window.CATALOG : [])];
+const arzanGalleries = window.ARZAN_GALLERIES || {};
+const products = [
+  ...(Array.isArray(window.VK_PRODUCTS) ? window.VK_PRODUCTS : []),
+  ...(Array.isArray(window.CATALOG) ? window.CATALOG : []).map((product) => {
+    const extras = arzanGalleries[product.sku];
+    return product.image && extras ? { ...product, images: [product.image, ...extras] } : product;
+  })
+];
 const categories = ['Все', 'Диваны', 'Кухни', 'Шкафы', 'Спальня', 'Гостиная', 'Детская', 'Прихожая', 'Комоды'];
 const pageSize = 24;
 let category = 'Все';
@@ -108,10 +115,11 @@ function makeCard(product) {
       }
     });
     photo.append(img, element('span', 'zoom-hint', '⤢'));
+    if (product.images && product.images.length > 1) photo.append(element('span', 'photo-badge', `${product.images.length} фото`));
     photo.addEventListener('click', (event) => {
       if (typeof photoDialog.showModal !== 'function') return;
       event.preventDefault();
-      gallery = product.images && product.images.length ? product.images : [photo.href];
+      gallery = product.images && product.images.length ? [photo.href, ...product.images.filter((url) => url !== imageUrl)] : [photo.href];
       galleryIndex = 0;
       photoLarge.alt = product.name;
       photoCaption.textContent = product.name;

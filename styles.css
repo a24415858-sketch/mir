@@ -49,3 +49,4 @@
 .photo-navigation[hidden]{display:none}.photo-navigation button{width:42px;height:38px;border:0;border-radius:7px;background:var(--yellow);color:var(--purple);font-size:20px;cursor:pointer}
 .photo-unavailable{font-size:13px;color:#67545f;text-align:center}.photo-stage #photo-error{padding:25px;color:#67545f;font-size:14px}
 .product-photo img[hidden],.photo-view .photo-stage img[hidden]{display:none}
+.photo-badge{position:absolute;left:14px;bottom:14px;background:var(--purple);color:white;font-size:11px;font-weight:700;padding:7px 10px;border-radius:20px}
